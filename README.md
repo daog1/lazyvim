@@ -4,8 +4,13 @@ A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
 
+### 安装
 
+```sh
+git clone https://github.com/daog1/lazyvim.git ~/.config/nvim
+```
 ### 功能列表
+
 | 快捷键 | 名字 | 功能 |
 |  ----  | ----  | ----  |
 |F2 |WhichKey| 快捷键帮助|
