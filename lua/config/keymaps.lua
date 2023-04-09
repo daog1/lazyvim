@@ -1,6 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+<<<<<<< HEAD
 --
 --
 local Util = require("lazyvim.util")
@@ -20,3 +21,5 @@ map("n", "<F3>", ":Telescope live_grep_args<CR>")
 map("n", "<F4>", ":SymbolsOutline<CR>")
 map("n", "<F5>", ":Telescope treesitter<CR>")
 map("n", "<F6>", ":terminal<CR>")
+=======
+>>>>>>> aa61346a0a594e8b0969ee409f6ec3ef60ab69bf

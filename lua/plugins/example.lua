@@ -11,6 +11,7 @@ if true then return {} end
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
+<<<<<<< HEAD
   {
     "gelguy/wilder.nvim",
     config = function()
@@ -39,6 +40,8 @@ return {
       vim.api.nvim_set_keymap("n", "<C-S-F>", "<CMD>Telescope live_grep_args<CR>", { noremap = true })
     end,
   },
+=======
+>>>>>>> aa61346a0a594e8b0969ee409f6ec3ef60ab69bf
 
   -- Configure LazyVim to load gruvbox
   {
@@ -184,7 +187,10 @@ return {
         "typescript",
         "vim",
         "yaml",
+<<<<<<< HEAD
         "go",
+=======
+>>>>>>> aa61346a0a594e8b0969ee409f6ec3ef60ab69bf
       },
     },
   },
@@ -197,8 +203,13 @@ return {
     opts = function(_, opts)
       -- add tsx and treesitter
       vim.list_extend(opts.ensure_installed, {
+<<<<<<< HEAD
         "tsx",
         "typescript",
+=======
+          "tsx",
+          "typescript",
+>>>>>>> aa61346a0a594e8b0969ee409f6ec3ef60ab69bf
       })
     end,
   },
