@@ -11,38 +11,6 @@ if true then return {} end
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
-<<<<<<< HEAD
-  {
-    "gelguy/wilder.nvim",
-    config = function()
-      require("wilder").setup({ modes = { ":", "/", "?" } })
-      -- config goes here
-    end,
-  },
-  {
-    "chentoast/marks.nvim",
-    config = function()
-      require("marks").setup({
-        mappings = {
-          set_next = "m,",
-          next = "m]",
-          preview = "m:",
-          set_bookmark0 = "m0",
-          prev = false, -- pass false to disable only this default mapping
-        },
-      })
-    end,
-  },
-  {
-    "nvim-telescope/telescope-live-grep-args.nvim",
-    config = function()
-      require("telescope").load_extension("live_grep_args")
-      vim.api.nvim_set_keymap("n", "<C-S-F>", "<CMD>Telescope live_grep_args<CR>", { noremap = true })
-    end,
-  },
-=======
->>>>>>> aa61346a0a594e8b0969ee409f6ec3ef60ab69bf
-
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
