@@ -9,6 +9,10 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 ```sh
 git clone https://github.com/daog1/lazyvim.git ~/.config/nvim
 ```
+windows安装
+```sh
+git clone https://github.com/daog1/lazyvim.git ~/AppData/Local/nvim
+```
 ### 功能列表
 
 | 快捷键 | 名字 | 功能 |
