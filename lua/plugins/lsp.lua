@@ -31,6 +31,20 @@ return {
     end,
   },
   {
+    "nvim-telescope/telescope-project.nvim",
+    config = function ()
+      require("telescope").load_extension("project")
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts ={
+      filesystem = {
+        bind_to_cwd = true,
+      },
+    },
+  },
+  {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
@@ -58,6 +72,13 @@ return {
         },
       },
   },
+  {
+     "echasnovski/mini.nvim",
+  },
+  {
+    "sindrets/diffview.nvim",
+  },
+
 -- better text-objects
   {
     "echasnovski/mini.ai",

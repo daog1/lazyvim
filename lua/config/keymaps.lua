@@ -15,8 +15,11 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
+map("n", "<F1>", ":Telescope project<CR>")
 map("n", "<F2>", ":WhichKey<CR>")
 map("n", "<F3>", ":Telescope live_grep_args<CR>")
 map("n", "<F4>", ":SymbolsOutline<CR>")
 map("n", "<F5>", ":Telescope treesitter<CR>")
 map("n", "<F6>", ":terminal<CR>")
+
+map("i", "jk", "<ESC>")
