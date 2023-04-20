@@ -31,17 +31,51 @@ return {
     end,
   },
   {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    config = true,
+    "nvim-telescope/telescope-project.nvim",
+    config = function ()
+      require("telescope").load_extension("project")
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts ={
+      filesystem = {
+        bind_to_cwd = true,
+      },
+    },
+  },
+--  {
+--    "simrat39/symbols-outline.nvim",
+--    cmd = "SymbolsOutline",
+--    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+--    config = true,
+--  },
+  {
+    "glepnir/lspsaga.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+    },
+    event = "BufReadPre",
+    opts = {
+      symbol_in_winbar = {
+        enable = false,
+      },
+      outline = {
+        auto_preview = false,
+        keys = {
+          expand_or_jump = '<cr>',
+        },
+      },
+    },
+    config = function(_, opts)
+      require("lspsaga").setup(opts)
+    end,
   },
   {
       "nvim-treesitter/nvim-treesitter",
       opts = {
         ensure_installed = {
           "bash",
-          "help",
           "html",
           "javascript",
           "json",
@@ -58,6 +92,12 @@ return {
           "go",
         },
       },
+  },
+  {
+     "echasnovski/mini.nvim",
+  },
+  {
+    "sindrets/diffview.nvim",
   },
 -- better text-objects
   {
@@ -129,7 +169,7 @@ return {
       end
     end,
   },
-    {
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -140,6 +180,11 @@ return {
       },
     },
   },
-
-
+  {
+    "rcarriga/nvim-notify",
+    enabled = false,
+    opts ={
+      timeout=500,
+    },
+  },
  }
