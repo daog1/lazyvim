@@ -8,6 +8,121 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
+  {
+    'mrjones2014/legendary.nvim',
+    -- sqlite is only needed if you want to use frecency sorting
+    -- dependencies = { 'kkharji/sqlite.lua' }
+  },
+{
+   'ojroques/nvim-osc52',
+    config=function ()
+      require('osc52').setup({
+        max_length = 0,      -- Maximum length of selection (0 for no limit)
+        silent     = false,  -- Disable message on successful copy
+        trim       = false,  -- Trim surrounding whitespaces before copy
+      })
+    end,
+  },
+  -- better yank/paste
+  {
+    "kkharji/sqlite.lua",
+    enabled = function()
+      return not jit.os:find("Windows")
+    end,
+  },
+  {
+    "gbprod/yanky.nvim",
+    enabled = true,
+    event = "BufReadPost",
+    config = function()
+      -- vim.g.clipboard = {
+      --   name = "xsel_override",
+      --   copy = {
+      --     ["+"] = "xsel --input --clipboard",
+      --     ["*"] = "xsel --input --primary",
+      --   },
+      --   paste = {
+      --     ["+"] = "xsel --output --clipboard",
+      --     ["*"] = "xsel --output --primary",
+      --   },
+      --   cache_enabled = 1,
+      -- }
+
+      require("yanky").setup({
+        highlight = {
+          timer = 150,
+        },
+        ring = {
+          storage = jit.os:find("Windows") and "shada" or "sqlite",
+        },
+      })
+
+      vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
+
+      vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+      vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+      vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+      vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+
+      vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+      vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+
+      vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
+      vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
+      vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
+      vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
+
+      vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
+      vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
+      vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
+      vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
+
+      vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
+      vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
+
+      vim.keymap.set("n", "<leader>P", function()
+        require("telescope").extensions.yank_history.yank_history({})
+      end, { desc = "Paste from Yanky" })
+    end,
+  },
+
+  -- better increase/descrease
+  {
+    "monaqa/dial.nvim",
+    event = "VeryLazy",
+    -- splutylua: ignore
+    keys = {
+      {
+        "<C-a>",
+        function()
+          return require("dial.map").inc_normal()
+        end,
+        expr = true,
+        desc = "Increment",
+      },
+      {
+        "<C-x>",
+        function()
+          return require("dial.map").dec_normal()
+        end,
+        expr = true,
+        desc = "Decrement",
+      },
+    },
+    config = function()
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias["%Y/%m/%d"],
+          augend.constant.alias.bool,
+          augend.semver.alias.semver,
+        },
+      })
+    end,
+  },
+
   -- add gruvbox
   {
     "chentoast/marks.nvim",
@@ -22,6 +137,147 @@ return {
         },
       })
     end,
+  },
+  {"Cassin01/wf.nvim", version = "*", 
+    config = function() 
+    require("wf").setup() 
+  end
+  },
+ {'akinsho/toggleterm.nvim', version = "*", config = true},
+    {
+    -- Winbar
+    -- FIXME: despite the fix from #35, `navic` still refuses to work
+    --  with barbecue.
+    --  After further investigation, I found that the bug is reproducible in my older
+    --  _lualine_ winbar, which begs the question if it's a navic bug or a bug
+    --  with lazyvim's handling of navic (particularly, how it attaches to a
+    --  LSP/buf).
+    "utilyre/barbecue.nvim", -- Wait for my PR to get merged
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    opts = {
+      -- The navic config that ships with Lazyvim already attaches
+      -- for us, besides `barbecue/issue#35`
+      attach_navic = false,
+      -- Window number as leading section
+      lead_custom_section = function(_, winnr)
+        return string.format("  %d 󱋱 ", vim.api.nvim_win_get_number(winnr))
+      end,
+
+      exclude_filetypes = {
+        "DressingInput",
+        "neo-tree",
+        "toggleterm",
+        "Trouble",
+      },
+    },
+  },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+      {
+        -- Scope buffers to tabs!
+        "tiagovla/scope.nvim",
+        config = true,
+      },
+    },
+    opts = {
+      options = {
+        separator_style = "slant",
+        always_show_bufferline = true,
+      },
+    },
+    keys = {
+      { "<leader>bj", "<Cmd>BufferLinePick<CR>", desc = "[b]uffer [j]ump" },
+      { "<S-Right>", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer right" },
+      { "<S-Left>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer left" },
+    },
+  },
+  {
+    'akinsho/flutter-tools.nvim',
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- Ensure mason installs the server
+        golangci_lint_ls = {},
+        gopls = {},
+      },
+      setup = {
+        gopls = function(_, opts)
+          require("lazyvim.util").on_attach(function(client, _)
+            if client.name == "gopls" then
+              -- workaround for gopls not supporting semanticTokensProvider
+              -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+              if not client.server_capabilities.semanticTokensProvider then
+                local semanticTokens = client.config.capabilities.textDocument.semanticTokens
+                client.server_capabilities.semanticTokensProvider = {
+                  full = true,
+                  legend = {
+                    tokenTypes = semanticTokens.tokenTypes,
+                    tokenModifiers = semanticTokens.tokenModifiers,
+                  },
+                  range = true,
+                }
+              end
+            end
+          end)
+          opts.settings = {
+            gopls = {
+              gofumpt = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+              analyses = {
+                fieldalignment = true,
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+              semanticTokens = true,
+            },
+          }
+        end,
+      },
+    },
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = {  -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = {"CmdlineEnter"},
+    ft = {"go", 'gomod'},
+    build = ':lua require("go.install").update_all_sync()'
   },
   {
     "nvim-telescope/telescope-live-grep-args.nvim",
@@ -45,6 +301,10 @@ return {
     },
   },
   {
+    "L3MON4D3/LuaSnip",
+    enabled = true,
+  },
+  {
     "glepnir/lspsaga.nvim",
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
@@ -56,9 +316,16 @@ return {
       },
       outline = {
         auto_preview = false,
+        win_width = 50,
         keys = {
           expand_or_jump = '<cr>',
         },
+      },
+      callhierarchy = {
+        show_detail = false,
+        keys ={
+          edit='<cr>',
+        }
       },
     },
     config = function(_, opts)
@@ -180,5 +447,15 @@ return {
     opts ={
       timeout=500,
     },
-  },
+  }, 
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+  }
  }

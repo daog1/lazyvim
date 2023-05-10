@@ -43,4 +43,7 @@ require("lazy").setup({
       },
     },
   },
+  -- ui = {
+  --  border = require("utls.opts").float.border,
+  -- },
 })
