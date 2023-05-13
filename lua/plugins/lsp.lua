@@ -205,6 +205,14 @@ return {
         -- Ensure mason installs the server
         golangci_lint_ls = {},
         gopls = {},
+        solidity = {
+                cmd = { 'nomicfoundation-solidity-language-server', '--stdio' },
+                filetypes = { 'solidity' },
+                -- require("lspconfig.util").root_pattern "foundry.toml",
+                root_dir = require("lspconfig.util").find_git_ancestor,
+                single_file_support = true,
+                includePath = "",
+        },
       },
       setup = {
         gopls = function(_, opts)

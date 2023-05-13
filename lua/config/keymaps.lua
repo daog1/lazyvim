@@ -37,6 +37,8 @@ map("n", "<leader>j", "<Cmd>BufferLinePick<CR>", { desc = "[b]uffer [j]ump" })
 -- map("n", "<F6>", ":Lspsaga term_toggle<CR>")
 map("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
 map("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+map("n", "<Leader>T", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace Diagnostics (Trouble)" })
+map("n", "<Leader>t", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document Diagnostics (Trouble)" })
 map("n", "<Leader>A", function()
   vim.lsp.buf.code_action({
     context = {

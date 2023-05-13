@@ -8,6 +8,7 @@ local opt = vim.opt
 opt.relativenumber = false
 opt.tabstop = 4
 opt.termguicolors = true
+opt.clipboard = "*"
 
 -- popup, float
 -- opt.winblend = float.winblend
