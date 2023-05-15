@@ -301,6 +301,9 @@ return {
     end,
   },
   {
+    'rafcamlet/nvim-luapad',
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts ={
       filesystem = {

@@ -34,7 +34,13 @@ end
 local function paste()
   return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
 end
-
+if vim.env.SSH_CONNECTION ~= nil then
+  vim.g.clipboard = {
+    name = "osc52",
+    copy = { ["+"] = copy, ["*"] = copy },
+    paste = { ["+"] = paste, ["*"] = paste },
+  }
+end
 -- vim.g.clipboard = {
 --   name = "osc52",
 --   copy = { ["+"] = copy, ["*"] = copy },
