@@ -32,7 +32,7 @@ return {
   },
   {
     "gbprod/yanky.nvim",
-    enabled = true,
+    enabled = false,
     event = "BufReadPost",
     config = function()
       -- vim.g.clipboard = {
@@ -313,7 +313,8 @@ return {
     enabled = true,
   },
   {
-    "glepnir/lspsaga.nvim",
+    "daog1/lspsaga.nvim",
+    branch = 'addOutlineHideconfig',
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
     },
@@ -325,6 +326,7 @@ return {
       outline = {
         auto_preview = false,
         win_width = 50,
+        hide_kind={"Variable","Field"},
         keys = {
           expand_or_jump = '<cr>',
         },
