@@ -49,17 +49,15 @@ map("n", "<Leader>A", function()
     },
   })
 end, { desc = "Source Action" })
--- map(
---   "n",
---   "<Leader>",
---   which_key({ text_insert_in_advance = "<Leader>" }),
---   { noremap = true, silent = true, desc = "[wf.nvim] which-key /" }
--- )
--- Move line(s), like vscode
--- https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/keymappings.lua
--- map("n", "<A-j>", ":m .+1<cr>==")
--- map("n", "<A-k>", ":m .-2<cr>==")
--- map("i", "<A-j>", "<esc>:m .+1<cr>==gi")
--- map("i", "<A-k>", "<esc>:m .-2<cr>==gi")
--- map("v", "<A-j>", ":m '>+1<cr>gv-gv")
--- map("v", "<A-k>", ":m '<-2<cr>gv-gv")
+
+-- VSCode style saving
+vim.keymap.set("n", "<C-s>", "<CMD>w!<CR>")
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<ESC><CMD>w!<CR>")
+vim.keymap.set({ "n", "i", "v" }, "<C-q>", "<ESC><CMD>q!<CR>")
+vim.keymap.set("i", "<C-e>", "<C-o>A")
+vim.keymap.set("n", "U", "<C-R>", { desc = "Redo", silent = true })
+
+-- A couple Helix/Kakoune keymaps
+map({ "n", "o", "x" }, "gl", "$", { desc = "Go to the last character in the line" })
+map({ "n", "o", "x" }, "gh", "0", { desc = "Go to the first character in the line" })
+-- map({ "n", "o", "x" }, "gs", "^", { desc = "Go to the first non-blank character in the line" })
