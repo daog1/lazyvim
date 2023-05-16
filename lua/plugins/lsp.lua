@@ -519,5 +519,19 @@ return {
         floats = "transparent",
       },
     },
-  }
- }
+  },
+  {
+      "folke/persistence.nvim",
+      event = "BufReadPre",
+      lazy = true,
+      keys = {
+        { "<leader>a", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      },
+      config = function()
+        require("persistence").setup {
+          dir = vim.fn.expand(vim.fn.stdpath("config") .. "/sessions/"),  -- directory where session files are saved
+          options = { "buffers", "curdir", "tabpages", "winsize" }, -- sessionoptions used for saving
+        }
+      end,
+  },
+}
