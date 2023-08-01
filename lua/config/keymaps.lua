@@ -15,24 +15,20 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
-local which_key = require("wf.builtin.which_key")
-
--- Move to window using the movement keys
--- map("n", "<left>", "<C-w>h")
--- map("n", "<down>", "<C-w>j")
--- map("n", "<up>", "<C-w>k")
--- map("n", "<right>", "<C-w>l")
 
 map("n", "<F1>", ":Telescope project<CR>")
 map("n", "<F2>", ":WhichKey<CR>")
 map("n", "<F3>", ":Telescope live_grep_args<CR>")
+map("n", "<leader><F3>", ":Telescope find_files<CR>")
+map("n", "<leader><F4>", ":Telescope buffers<CR>")
 map("n", "<F4>", ":Lspsaga outline<CR>")
 map("n", "<F5>", ":Telescope treesitter<CR>")
 -- map("n", "<F6>", ":Lspsaga term_toggle<CR>")
-map("n", "<F6>", ":ToggleTerm size=40<CR>")
+map("n", "<F6>", ":ToggleTerm size=20<CR>")
 map("n", "<leader>F", ":Lspsaga lsp_finder<CR>")
 
 map("i", "jk", "<ESC>")
+map("n", "<leader>z", ":Neotree toggle<CR>")
 map("n", "<leader>j", "<Cmd>BufferLinePick<CR>", { desc = "[b]uffer [j]ump" })
 -- map("n", "<F6>", ":Lspsaga term_toggle<CR>")
 map("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
@@ -57,6 +53,11 @@ vim.keymap.set({ "n", "i", "v" }, "<C-q>", "<ESC><CMD>q!<CR>")
 vim.keymap.set("i", "<C-e>", "<C-o>A")
 vim.keymap.set("n", "U", "<C-R>", { desc = "Redo", silent = true })
 
+-- vim.api.nvim_set_keymap("n", "K", "<C-u>", { silent = true })
+-- vim.api.nvim_set_keymap("n", "J", "<C-e>", { silent = true })
+-- vim.api.nvim_set_keymap("x", "K", "<C-u>", { silent = true })
+-- vim.api.nvim_set_keymap("x", "J", "<C-e>", { silent = true })
+--
 -- A couple Helix/Kakoune keymaps
 map({ "n", "o", "x" }, "gl", "$", { desc = "Go to the last character in the line" })
 map({ "n", "o", "x" }, "gh", "0", { desc = "Go to the first character in the line" })
