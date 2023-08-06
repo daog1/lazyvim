@@ -16,16 +16,18 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("n", "<F1>", ":Telescope project<CR>")
+-- map("n", "<F1>", ":Telescope project<CR>")
 map("n", "<F2>", ":WhichKey<CR>")
 map("n", "<F3>", ":Telescope live_grep_args<CR>")
-map("n", "<leader><F3>", ":Telescope find_files<CR>")
+--map("n", "<F4>", ":Telescope find_files hidden=true<CR>")
+map("n", "<F4>", ":FzfLua files<CR>")
 map("n", "<leader><F4>", ":Telescope buffers<CR>")
-map("n", "<F4>", ":Lspsaga outline<CR>")
-map("n", "<F5>", ":Telescope treesitter<CR>")
+--map("n", "<F5>", ":Telescope treesitter<CR>")
 -- map("n", "<F6>", ":Lspsaga term_toggle<CR>")
+--
 map("n", "<F6>", ":ToggleTerm size=20<CR>")
 map("n", "<leader>F", ":Lspsaga lsp_finder<CR>")
+map("n", "<leader>o", ":Lspsaga outline<CR>")
 
 map("i", "jk", "<ESC>")
 map("n", "<leader>z", ":Neotree toggle<CR>")
