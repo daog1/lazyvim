@@ -105,6 +105,7 @@ return {
   -- better increase/descrease
   {
     "monaqa/dial.nvim",
+    enabled = false,
     event = "VeryLazy",
     -- splutylua: ignore
     keys = {
@@ -233,19 +234,32 @@ return {
     event = "VeryLazy",
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    -- dev = true,
-    branch = "v3.x",
-    opts = {
-      filesystem = {
-        bind_to_cwd = true,
-      },
-    },
-    config = function(_, opts)
-      --     -- code
-      require("neo-tree").setup(opts)
-    end,
+    "LhKipp/nvim-nu",
   },
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   -- dev = true,
+  --   branch = "v3.x",
+  --   opts = {
+  --     filesystem = {
+  --       bind_to_cwd = true,
+  --       -- follow_current_file = {
+  --       --   enabled = false,
+  --       --   leave_dirs_open = false,
+  --       -- },
+  --     },
+  --     -- buffers = {
+  --     --   follow_current_file = {
+  --     --     enabled = false,
+  --     --     leave_dirs_open = false,
+  --     --   },
+  --     -- },
+  --   },
+  --   config = function(_, opts)
+  --     --     -- code
+  --     require("neo-tree").setup(opts)
+  --   end,
+  -- },
   {
     "L3MON4D3/LuaSnip",
     enabled = true,
@@ -477,26 +491,7 @@ return {
     end,
   },
   -- markdown preview
-  {
-    "toppair/peek.nvim",
-    enabled = false,
-    build = "deno task --quiet build:fast",
-    keys = {
-      {
-        "<leader>op",
-        function()
-          local peek = require("peek")
-          if peek.is_open() then
-            peek.close()
-          else
-            peek.open()
-          end
-        end,
-        desc = "Peek (Markdown Preview)",
-      },
-    },
-    opts = { theme = "light" },
-  },
+
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
@@ -506,17 +501,29 @@ return {
       })
     end,
   },
-  -- {
-  --   "folke/zen-mode.nvim",
-  --   cmd = "ZenMode",
-  --   keys = {
-  --     { "<Leader>zz", "<cmd>ZenMode<CR>", noremap = true, desc = "Zen Mode" },
-  --   },
-  --   opts = {
-  --     plugins = {
-  --       gitsigns = { enabled = true },
-  --       -- tmux = { enabled = vim.env.TMUX ~= nil },
-  --     },
-  --   },
-  -- },
+  {
+    "echasnovski/mini.move",
+    event = "VeryLazy",
+    opts = {
+      mappings = {
+        -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+        left = "<M-h>",
+        right = "<M-l>",
+        down = "<M-j>",
+        up = "<M-k>",
+
+        -- Move current line in Normal mode
+        line_left = "<M-h>",
+        line_right = "<M-l>",
+        line_down = "<M-j>",
+        line_up = "<M-k>",
+      },
+
+      -- Options which control moving behavior
+      options = {
+        -- Automatically reindent selection during linewise vertical move
+        reindent_linewise = true,
+      },
+    },
+  },
 }
