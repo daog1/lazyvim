@@ -236,6 +236,31 @@ return {
   {
     "LhKipp/nvim-nu",
   },
+  {
+    "Bekaboo/dropbar.nvim",
+    event = "VeryLazy",
+    config = true,
+    enabled = false,
+    keys = {
+      {
+        "<Leader>d",
+        function()
+          require("dropbar.api").pick()
+        end,
+        desc = "Dropbar: Pick mode",
+      },
+    },
+  },
+  -- {
+  --   "roobert/activate.nvim",
+  --   keys = {
+  --     {
+  --       "<leader>P",
+  --       '<CMD>lua require("activate").list_plugins()<CR>',
+  --       desc = "Plugins",
+  --     },
+  --   },
+  -- },
   -- {
   --   "nvim-neo-tree/neo-tree.nvim",
   --   -- dev = true,

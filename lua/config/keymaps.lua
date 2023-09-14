@@ -28,6 +28,7 @@ map("n", "<leader><F4>", ":Telescope buffers<CR>")
 map("n", "<F6>", ":ToggleTerm size=20<CR>")
 map("n", "<leader>F", ":Lspsaga lsp_finder<CR>")
 map("n", "<leader>o", ":Lspsaga outline<CR>")
+map("n", "<leader>p", ":Telescope projects<CR>")
 
 map("i", "jk", "<ESC>")
 map("n", "<leader>z", ":Neotree toggle<CR>")

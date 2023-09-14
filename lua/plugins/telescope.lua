@@ -37,12 +37,6 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope-project.nvim",
-    config = function()
-      require("telescope").load_extension("project")
-    end,
-  },
-  {
     "ahmedkhalf/project.nvim",
     opts = {},
     event = "VeryLazy",
@@ -53,5 +47,15 @@ return {
     keys = {
       { "<leader>fp", "<Cmd>Telescope projects<CR>", desc = "Projects" },
     },
+  },
+  {
+    "goolord/alpha-nvim",
+    optional = true,
+    opts = function(_, dashboard)
+      local button = dashboard.button("p", " " .. " Projects", ":Telescope projects <CR>")
+      button.opts.hl = "AlphaButtons"
+      button.opts.hl_shortcut = "AlphaShortcut"
+      table.insert(dashboard.section.buttons.val, 4, button)
+    end,
   },
 }

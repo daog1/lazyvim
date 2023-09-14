@@ -54,7 +54,7 @@ vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 local opt = vim.opt
 
-opt.relativenumber = false
+opt.relativenumber = true
 opt.tabstop = 4
 opt.termguicolors = true
 opt.scrolloff = 5
