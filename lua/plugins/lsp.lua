@@ -87,70 +87,6 @@ return {
       },
     },
   },
-  -- {
-  --   -- RUST LSP
-  --   "simrat39/rust-tools.nvim",
-  --   event = "VeryLazy",
-  --   dependencies = "neovim/nvim-lspconfig",
-  --   config = function()
-  --     require("rust-tools").setup({
-  --       -- rust-tools options
-  --       tools = {
-  --         autoSetHints = true,
-  --         inlay_hints = {
-  --           show_parameter_hints = true,
-  --           parameter_hints_prefix = "<- ",
-  --           other_hints_prefix = "=> ",
-  --           -- auto = false,
-  --         },
-  --       },
-  --       -- all the opts to send to nvim-lspconfig
-  --       -- these override the defaults set by rust-tools.nvim
-  --       --
-  --       -- REFERENCE:
-  --       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-  --       -- https://rust-analyzer.github.io/manual.html#configuration
-  --       -- https://rust-analyzer.github.io/manual.html#features
-  --       --
-  --       -- NOTE: The configuration format is `rust-analyzer.<section>.<property>`.
-  --       --       <section> should be an object.
-  --       --       <property> should be a primitive.
-  --       server = {
-  --         on_attach = function(client, bufnr)
-  --           require("shared/lsp")(client, bufnr)
-  --           require("illuminate").on_attach(client)
-  --
-  --           local bufopts = {
-  --             noremap = true,
-  --             silent = true,
-  --             buffer = bufnr,
-  --           }
-  --           vim.keymap.set("n", "<leader><leader>rr", "<Cmd>RustRunnables<CR>", bufopts)
-  --           vim.keymap.set("n", "K", "<Cmd>RustHoverActions<CR>", bufopts)
-  --         end,
-  --         ["rust-analyzer"] = {
-  --           assist = {
-  --             importEnforceGranularity = true,
-  --             importPrefix = "create",
-  --           },
-  --           cargo = { allFeatures = true },
-  --           checkOnSave = {
-  --             -- default: `cargo check`
-  --             command = "clippy",
-  --             allFeatures = true,
-  --           },
-  --         },
-  --         inlayHints = {
-  --           -- NOT SURE THIS IS VALID/WORKS 😬
-  --           lifetimeElisionHints = {
-  --             enable = true,
-  --             useParameterNames = true,
-  --           },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
   -- inlay hints
   {
     "lvimuser/lsp-inlayhints.nvim",
@@ -169,6 +105,15 @@ return {
           require("lsp-inlayhints").on_attach(client, args.buf)
         end,
       })
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    lazy = true,
+    ft = "java",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("dap-python").setup("python")
     end,
   },
 }

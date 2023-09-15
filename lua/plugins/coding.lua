@@ -29,14 +29,6 @@ return {
       vim.api.nvim_set_keymap("n", "<leader>ec", "<Cmd>ExecutorSetCommand<CR>", {})
     end,
   },
-  -- {
-  --   "jedrzejboczar/toggletasks.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "akinsho/toggleterm.nvim",
-  --     "nvim-telescope/telescope.nvim/",
-  --   },
-  -- },
   {
     "mrjones2014/legendary.nvim",
     -- sqlite is only needed if you want to use frecency sorting
@@ -210,25 +202,7 @@ return {
     "akinsho/flutter-tools.nvim",
     event = "VeryLazy",
   },
-  -- {
-  --   "ray-x/go.nvim",
-  --   dependencies = { -- optional packages
-  --     "ray-x/guihua.lua",
-  --     "neovim/nvim-lspconfig",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function()
-  --     require("go").setup({
-  --       lsp_inlay_hints = { enable = false },
-  --     })
-  --   end,
-  --   -- opts = {
-  --   --   lsp_inlay_hints = { enable = false },
-  --   -- },
-  --   event = { "CmdlineEnter" },
-  --   ft = { "go", "gomod" },
-  --   build = ':lua require("go.install").update_all_sync()',
-  -- },
+
   {
     "rafcamlet/nvim-luapad",
     event = "VeryLazy",
@@ -251,40 +225,6 @@ return {
       },
     },
   },
-  -- {
-  --   "roobert/activate.nvim",
-  --   keys = {
-  --     {
-  --       "<leader>P",
-  --       '<CMD>lua require("activate").list_plugins()<CR>',
-  --       desc = "Plugins",
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   -- dev = true,
-  --   branch = "v3.x",
-  --   opts = {
-  --     filesystem = {
-  --       bind_to_cwd = true,
-  --       -- follow_current_file = {
-  --       --   enabled = false,
-  --       --   leave_dirs_open = false,
-  --       -- },
-  --     },
-  --     -- buffers = {
-  --     --   follow_current_file = {
-  --     --     enabled = false,
-  --     --     leave_dirs_open = false,
-  --     --   },
-  --     -- },
-  --   },
-  --   config = function(_, opts)
-  --     --     -- code
-  --     require("neo-tree").setup(opts)
-  --   end,
-  -- },
   {
     "L3MON4D3/LuaSnip",
     enabled = true,

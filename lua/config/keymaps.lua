@@ -26,6 +26,11 @@ map("n", "<leader><F4>", ":Telescope buffers<CR>")
 -- map("n", "<F6>", ":Lspsaga term_toggle<CR>")
 --
 map("n", "<F6>", ":ToggleTerm size=20<CR>")
+map("n", "<F5>", ":DapContinue<CR>")
+map("n", "<F9>", ":DapToggleBreakpoint<CR>")
+map("n", "<F10>", ":DapStepOver<CR>")
+map("n", "<F11>", ":DapStepInto<CR>")
+
 map("n", "<leader>F", ":Lspsaga lsp_finder<CR>")
 map("n", "<leader>o", ":Lspsaga outline<CR>")
 map("n", "<leader>p", ":Telescope projects<CR>")
