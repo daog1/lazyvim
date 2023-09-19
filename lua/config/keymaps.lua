@@ -34,7 +34,9 @@ map("n", "<F10>", ":DapStepOver<CR>")
 map("n", "<F11>", ":DapStepInto<CR>")
 
 map("n", "<leader>F", ":Lspsaga lsp_finder<CR>")
-map("n", "<leader>o", ":Lspsaga outline<CR>")
+-- map("n", "<leader>o", ":Lspsaga outline<CR>")
+map("n", "<leader>o", ":AerialToggle<CR>")
+
 map("n", "<leader>p", ":Telescope projects<CR>")
 
 map("i", "jk", "<ESC>")

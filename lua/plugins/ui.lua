@@ -49,6 +49,15 @@ return {
       vim.g.lazygit_floating_window_scaling_factor = 1
     end,
   },
+  {
+    "stevearc/aerial.nvim",
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
   -- {
   --   "kevinhwang91/nvim-ufo",
   --   dependencies = "kevinhwang91/promise-async",
